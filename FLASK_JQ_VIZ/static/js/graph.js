@@ -4,9 +4,11 @@ $(document).ready(function() {
     title: title1,
     xAxis: xAxis1,
     yAxis: yAxis1,
-    series: series1
- });
+    series: series1,
+
 });
+});
+
 
 $(document).ready(function() {
  $(chart2_id).highcharts({
@@ -14,7 +16,13 @@ $(document).ready(function() {
   title: title2,
   xAxis: xAxis2,
   yAxis: yAxis2,
-  series: series2
+  series: series2,
+     $("#myInput1").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#chart2ID series2").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 })});
 
 
@@ -69,8 +77,12 @@ $(document).ready(function() {
   xAxis: xAxis6,
   yAxis: yAxis6,
   series: series6,
+  plotOptions:plotOptions,
+  setOptions:setOptions,
+  stackLabels: true,
   stacking: 'normal',
-  enabled: true,
+  stackLabels:stackLabels
+
 })});
 
 

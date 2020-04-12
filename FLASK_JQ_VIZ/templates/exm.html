@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml" xmlns:background-color="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -9,22 +9,41 @@
     {% block head %}
         <title>{% block title %}Title!{% endblock %}</title>
     {% endblock %}
+
 </head>
 
 <body>
     <div id= {{ chart1ID|safe }} class="chart1" style="height: 300px; width: 800px"></div>
+	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." title="Type in a name">
     <script>
-        var chart1_id = {{ chart1ID|safe }}
+       var chart1_id = {{ chart1ID|safe }}
         var series1 = {{ series1|safe }}
         var title1 = {{ title1|safe }}
         var xAxis1 = {{ xAxis1|safe }}
         var yAxis1 = {{ yAxis1|safe }}
         var chart1 = {{ chart1|safe }}
     </script>
+    <script>
+    function listFilter(chart1ID, series1){
+        var form = $("<form>").attr({"class":"filterform","action":"#"})
+            input = $("<input>").attr({"class":"filterinput","type":"text"});
+        $(form).append(input).appendTo(header);
+            $(input).change( function () {
+                var filter = $(this).val(); // get the value of the input, which we filter on
+                if (filter) {
+                    $(series1).find("a:contains(" + filter + ")").parent().slideDown();
+                    $(series1).find("a:contains(" + filter + ")").parent().slideDown();
+                  } else {
+                    $(series1).find("li").slideDown();
+             }
+  });
+    }
+    </script>
             <br>
     <P>***********************************************************************************</P>
 
     <div id= {{ chart2ID|safe }} class="chart2" style="height: 300px; width: 800px"></div>
+     <input type="text" id="myInput1" onkeyup="filterFunction()" placeholder="Filter by Technology">
  <script>
          var chart2_id = {{ chart2ID|safe }}
          var series2 = {{ series2|safe }}
@@ -71,7 +90,7 @@
     <br>
     <p>*************************************************************************************************</p>
 
-    <div id= {{ chart6ID|safe }} class="chart6" style="height: 300px; width: 800px"; colors=""></div>
+    <div id= {{ chart6ID|safe }} class="chart6" style="height: 300px; width: 800px"></div>
     <script>
          var chart6_id = {{ chart6ID|safe }}
          var series6 = {{ series6|safe }}
@@ -79,15 +98,21 @@
          var yAxis6 = {{ yAxis6|safe }}
          var xAxis6 = {{ xAxis6|safe }}
          var chart6 = {{ chart6|safe }}
+         plotOptions = {{ plotOptions|safe }}
+         setOptions = {{ setOptions|safe }}
+         stackLabels = {{ stackLabels|safe }}
     </script>
     <br>
 
     <p>******************************************************************************************</p>
 
-    <p>*****************************************************************************************</p>
-
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="../static/js/graph.js"></script>
+
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 </body>
 </html>
