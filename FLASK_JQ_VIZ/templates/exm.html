@@ -23,22 +23,6 @@
         var yAxis1 = {{ yAxis1|safe }}
         var chart1 = {{ chart1|safe }}
     </script>
-    <script>
-    function listFilter(chart1ID, series1){
-        var form = $("<form>").attr({"class":"filterform","action":"#"})
-            input = $("<input>").attr({"class":"filterinput","type":"text"});
-        $(form).append(input).appendTo(header);
-            $(input).change( function () {
-                var filter = $(this).val(); // get the value of the input, which we filter on
-                if (filter) {
-                    $(series1).find("a:contains(" + filter + ")").parent().slideDown();
-                    $(series1).find("a:contains(" + filter + ")").parent().slideDown();
-                  } else {
-                    $(series1).find("li").slideDown();
-             }
-  });
-    }
-    </script>
             <br>
     <P>***********************************************************************************</P>
 

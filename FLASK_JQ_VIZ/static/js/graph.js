@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
  $(chart1_id).highcharts({
     chart: chart1,
@@ -84,5 +85,3 @@ $(document).ready(function() {
   stackLabels:stackLabels
 
 })});
-
-
